@@ -14,7 +14,7 @@
             <Label Content="Username:" FontSize="15" Margin="100,20,100,0" Background="Transparent"/>
             <TextBox x:Name="UserNameBox" Margin="100,5,100,10" Height="30" VerticalContentAlignment="Center" FontSize="14"/>
             <Label Content="Password:" FontSize="15" Margin="100,0,100,0" Background="Transparent"/>
-            <PasswordBox x:Name="PassWordBox" Margin="100,5,100,10" Height="30" VerticalContentAlignment="Center" FontSize="14" />
+            <PasswordBox x:Name="PasswordBox" Margin="100,5,100,10" Height="30" VerticalContentAlignment="Center" FontSize="14" />
             <Button Content="Sign In" FontSize="15" Margin="180,10,180,10" Background="Transparent" Height="30" Click="LogIn_Button_Click"/>
             <TextBlock Name="Login_InfoBar" Margin="80,10,80,0" FontSize="15" HorizontalAlignment="Center" />
             <Label Content="New Here! Create One." FontSize="15" FontStyle="Italic" HorizontalContentAlignment="Center" Margin="100,30,100,0" Background="Transparent"/>

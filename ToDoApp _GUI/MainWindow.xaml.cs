@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Configuration;
 using MySql.Data.MySqlClient;
 using Ubiety.Dns.Core;
+using System.Data;
 
 namespace ToDoApp__GUI
 {
@@ -22,23 +23,46 @@ namespace ToDoApp__GUI
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
+    {        
         MySqlConnection mySqlConnection;
+        MySqlCommand sqlCommand;
         public MainWindow()
         {
             InitializeComponent();
 
 
-            //string ConnectionString = ConfigurationManager.ConnectionStrings["ToDoApp_GUI.Properties.Settings." +
-            //    "todoapp_dbConnectionString"].ConnectionString;             //Connection String For DataBase 
-            //mySqlConnection = new MySqlConnection(ConnectionString);
+            string ConnectionString = //ConfigurationManager.ConnectionStrings["@ToDoApp_GUI.Properties.Settings.todoapp_dbConnectionString;"].ConnectionString.ToString();
+                "server=localhost;user id=root;password=manjan;persistsecurityinfo=True;database=todoapp_db";             //Connection String For DataBase 
+            mySqlConnection = new MySqlConnection(ConnectionString);
+
         }
 
         private void LogIn_Button_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(UserNameBox.Text) && !string.IsNullOrEmpty(PassWordBox.Password))
-            {
-                Login_InfoBar.Text = "Successful";
+            if (!string.IsNullOrEmpty(UserNameBox.Text) && !string.IsNullOrEmpty(PasswordBox.Password))     //Check if BothTextBox is not empty
+            { 
+                string mySqlQuery = "SELECT username, user_password FROM users " +
+                    "WHERE username='" + UserNameBox.Text + "' AND user_password=SHA1('" + PasswordBox.Password +"');";      //Storing mysql query in variable and @userame,@assword are just variable
+                MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(mySqlQuery, mySqlConnection);  
+                using (mySqlDataAdapter)
+                {
+                    DataTable dataTable = new DataTable();
+                    mySqlDataAdapter.Fill(dataTable);
+                    if (dataTable.Rows.Count > 0 && dataTable.Rows.Count <= 1)
+                    {
+                        Login_InfoBar.Foreground = Brushes.Blue;
+                        Login_InfoBar.Text = "Success";
+                        
+                        MainPage.Content = new TodoAppPage();
+                        MainPage.Height = 550;
+                        MainPage.Width = 800;
+                    }
+                    else
+                    {
+                        Login_InfoBar.Foreground = Brushes.Red;
+                        Login_InfoBar.Text = "Incorrect username and password!";
+                    }
+                }
             }
             else
             { 

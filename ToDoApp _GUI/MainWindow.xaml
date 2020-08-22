@@ -5,19 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoApp__GUI"
         mc:Ignorable="d"
-        Title="To Do App" x:Name="MainPage" Height="600" Width="500" Icon="C:\Users\abdul\Desktop\ToDoApp _GUI\ToDoApp _GUI\Images\todo-list-vector-icon-illustration-260nw-62316672223.jpg" 
+        Title="ToDo App" x:Name="MainPage" Height="600" Width="500" 
+        Icon="C:\Users\abdul\Desktop\ToDoApp _GUI\ToDoApp _GUI\Images\todo-list-vector-icon-illustration-260nw-62316672223.jpg" 
                    >
     <StackPanel>
-            <Image Source="C:\Users\abdul\Desktop\ToDoApp _GUI\ToDoApp _GUI\Images\31145e7925e59e8fb344f13422435dba.jpg"
-               Margin="10" Height="100" VerticalAlignment="Top" />
-            <Label Content="To Do App" HorizontalAlignment="Center" FontSize="30" FontWeight="UltraLight" Background="Transparent" />
-            <Label Content="Username:" FontSize="15" Margin="100,20,100,0" Background="Transparent"/>
-            <TextBox x:Name="UserNameBox" Margin="100,5,100,10" Height="30" VerticalContentAlignment="Center" FontSize="14"/>
-            <Label Content="Password:" FontSize="15" Margin="100,0,100,0" Background="Transparent"/>
-            <PasswordBox x:Name="PasswordBox" Margin="100,5,100,10" Height="30" VerticalContentAlignment="Center" FontSize="14" />
-            <Button Content="Sign In" FontSize="15" Margin="180,10,180,10" Background="Transparent" Height="30" Click="LogIn_Button_Click"/>
-            <TextBlock Name="Login_InfoBar" Margin="80,10,80,0" FontSize="15" HorizontalAlignment="Center" />
-            <Label Content="New Here! Create One." FontSize="15" FontStyle="Italic" HorizontalContentAlignment="Center" Margin="100,30,100,0" Background="Transparent"/>
-            <Button Content="Sign Up" FontSize="15" Margin="180,0,180,10" Background="Transparent" Height="30" Click="SignUp_Button_Click"/>
-        </StackPanel>
+        <Image Source="C:\Users\abdul\Desktop\ToDoApp _GUI\ToDoApp _GUI\Images\31145e7925e59e8fb344f13422435dba.jpg"
+               Margin="10" Height="100" VerticalAlignment="Top" HorizontalAlignment="Center" />
+        <Label Content="To Do App" FontSize="30" FontWeight="UltraLight" HorizontalAlignment="Center" />
+        <Label Content="Username:" FontSize="15" Margin="100,20,100,0" />
+        <TextBox x:Name="UserNameBox" FontSize="14" Margin="100,5,100,10" Height="30" VerticalContentAlignment="Center" />
+        <Label Content="Password:" FontSize="15" Margin="100,0,100,0" />
+        <PasswordBox x:Name="PasswordBox" FontSize="14" Margin="100,5,100,10" Height="30" VerticalContentAlignment="Center" />
+        <Button Content="Sign In" FontSize="15" Margin="180,10,180,10" Height="30" Click="LogIn_Button_Click" />
+        <TextBlock Name="Login_InfoBar" FontSize="15" Margin="80,10,80,0" HorizontalAlignment="Center" />
+        <Label Content="New Here! Create One." FontSize="15" FontStyle="Italic" Margin="100,30,100,0" HorizontalContentAlignment="Center" />
+        <Button Content="Sign Up" FontSize="15" Margin="180,0,180,10" Height="30" Click="SignUp_Button_Click"/>
+        <Button Content="Close" Foreground="Red" FontSize="15" Margin="180,0,180,10" Height="30" Click="ApplicationClose_Button" />
+    </StackPanel>
 </Window>

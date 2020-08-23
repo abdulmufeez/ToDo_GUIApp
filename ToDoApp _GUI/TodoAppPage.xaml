@@ -30,7 +30,7 @@
         </StackPanel>
         <StackPanel Grid.Column="1">
             <Button Content="Sign Out" FontSize="15" Margin="5,23,5,5" Height="35" />
-            <Button Content="Add" FontSize="15" Margin="5,22,5,10" Height="135" />
+            <Button Content="Add" FontSize="15" Margin="5,22,5,10" Height="135" Click="AddTask_Button" />
             <Button Content="Edit" FontSize="15" Margin="5,25,5,10" Height="60" />
             <Button Content="Delete" FontSize="15" Margin="5,20,5,10" Foreground="Red" Height="60" />
             <Button Content="Complete" FontSize="15" Margin="5,20,5,10" Height="60" />

@@ -53,9 +53,31 @@ namespace ToDoApp__GUI
 
                     UserTask_listBox.DisplayMemberPath = "TaskWithDate" ;
                     UserTask_listBox.SelectedValuePath = "user_id";
+                    UserTask_listBox.ItemsSource = dataTable.DefaultView;                                       
+                }
+            }
+            catch (Exception error)
+            {
+
+                MessageBox.Show(error.Message.ToString());
+            }                        
+        }
+        private void AddTask_Button (object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string query = "INSERT INTO user_tasks (user_task, task_datetime, user_id)" +
+                    "VALUES ('" + username + "','"+ +"',);";
+                MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(query, signInForm_MySqlConection);
+                using (mySqlDataAdapter)
+                {
+                    DataTable dataTable = new DataTable();
+                    mySqlDataAdapter.Fill(dataTable);
+
+
+                    UserTask_listBox.DisplayMemberPath = "TaskWithDate";
+                    UserTask_listBox.SelectedValuePath = "user_id";
                     UserTask_listBox.ItemsSource = dataTable.DefaultView;
-                    
-                    
                 }
             }
             catch (Exception error)
@@ -63,8 +85,6 @@ namespace ToDoApp__GUI
 
                 MessageBox.Show(error.Message.ToString());
             }
-            
-            
         }
     }
 }

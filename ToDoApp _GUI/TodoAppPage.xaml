@@ -25,7 +25,7 @@
                 <Label Grid.Column="0" Content="Task To Complete On:" FontSize="15" Height="30"  VerticalContentAlignment="Center" />
                 <TextBox Grid.Column="1" x:Name="Task_DateTime_TextBlock" FontSize="14" Height="30" VerticalContentAlignment="Center" ToolTip="YYYY-MM-DD HH-MM-SS"  />
             </Grid>
-            <ListBox x:Name="UserTask_listBox" FontSize="14" Margin="15,30,15,15" Height="245"/>
+            <ListBox x:Name="UserTask_listBox" FontSize="14"  Margin="15,30,15,15" Height="245"/>
 
         </StackPanel>
         <StackPanel Grid.Column="1">

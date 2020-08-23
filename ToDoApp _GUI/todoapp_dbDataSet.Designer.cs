@@ -325,9 +325,9 @@ namespace ToDoApp__GUI {
             
             private global::System.Data.DataColumn columntask_datetime;
             
-            private global::System.Data.DataColumn columnuser_id;
-            
             private global::System.Data.DataColumn columncreated_at;
+            
+            private global::System.Data.DataColumn columnuser_id;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -380,17 +380,17 @@ namespace ToDoApp__GUI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn user_idColumn {
+            public global::System.Data.DataColumn created_atColumn {
                 get {
-                    return this.columnuser_id;
+                    return this.columncreated_at;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn created_atColumn {
+            public global::System.Data.DataColumn user_idColumn {
                 get {
-                    return this.columncreated_at;
+                    return this.columnuser_id;
                 }
             }
             
@@ -431,15 +431,15 @@ namespace ToDoApp__GUI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public user_tasksRow Adduser_tasksRow(string user_task, System.DateTime task_datetime, usersRow parentusersRowByuser_tasks_ibfk_1, System.DateTime created_at) {
+            public user_tasksRow Adduser_tasksRow(string user_task, string task_datetime, System.DateTime created_at, usersRow parentusersRowByuser_tasks_ibfk_1) {
                 user_tasksRow rowuser_tasksRow = ((user_tasksRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         user_task,
                         task_datetime,
-                        null,
-                        created_at};
+                        created_at,
+                        null};
                 if ((parentusersRowByuser_tasks_ibfk_1 != null)) {
-                    columnValuesArray[2] = parentusersRowByuser_tasks_ibfk_1[0];
+                    columnValuesArray[3] = parentusersRowByuser_tasks_ibfk_1[0];
                 }
                 rowuser_tasksRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowuser_tasksRow);
@@ -465,8 +465,8 @@ namespace ToDoApp__GUI {
             internal void InitVars() {
                 this.columnuser_task = base.Columns["user_task"];
                 this.columntask_datetime = base.Columns["task_datetime"];
-                this.columnuser_id = base.Columns["user_id"];
                 this.columncreated_at = base.Columns["created_at"];
+                this.columnuser_id = base.Columns["user_id"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -474,13 +474,14 @@ namespace ToDoApp__GUI {
             private void InitClass() {
                 this.columnuser_task = new global::System.Data.DataColumn("user_task", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnuser_task);
-                this.columntask_datetime = new global::System.Data.DataColumn("task_datetime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                this.columntask_datetime = new global::System.Data.DataColumn("task_datetime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntask_datetime);
-                this.columnuser_id = new global::System.Data.DataColumn("user_id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnuser_id);
                 this.columncreated_at = new global::System.Data.DataColumn("created_at", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncreated_at);
+                this.columnuser_id = new global::System.Data.DataColumn("user_id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnuser_id);
                 this.columnuser_task.MaxLength = 255;
+                this.columntask_datetime.MaxLength = 255;
                 this.columnuser_id.AllowDBNull = false;
             }
             
@@ -963,10 +964,10 @@ namespace ToDoApp__GUI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public System.DateTime task_datetime {
+            public string task_datetime {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableuser_tasks.task_datetimeColumn]));
+                        return ((string)(this[this.tableuser_tasks.task_datetimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'task_datetime\' in table \'user_tasks\' is DBNull.", e);
@@ -974,17 +975,6 @@ namespace ToDoApp__GUI {
                 }
                 set {
                     this[this.tableuser_tasks.task_datetimeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int user_id {
-                get {
-                    return ((int)(this[this.tableuser_tasks.user_idColumn]));
-                }
-                set {
-                    this[this.tableuser_tasks.user_idColumn] = value;
                 }
             }
             
@@ -1001,6 +991,17 @@ namespace ToDoApp__GUI {
                 }
                 set {
                     this[this.tableuser_tasks.created_atColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int user_id {
+                get {
+                    return ((int)(this[this.tableuser_tasks.user_idColumn]));
+                }
+                set {
+                    this[this.tableuser_tasks.user_idColumn] = value;
                 }
             }
             
@@ -1345,12 +1346,12 @@ namespace ToDoApp__GUI.todoapp_dbDataSetTableAdapters {
             tableMapping.DataSetTable = "user_tasks";
             tableMapping.ColumnMappings.Add("user_task", "user_task");
             tableMapping.ColumnMappings.Add("task_datetime", "task_datetime");
-            tableMapping.ColumnMappings.Add("user_id", "user_id");
             tableMapping.ColumnMappings.Add("created_at", "created_at");
+            tableMapping.ColumnMappings.Add("user_id", "user_id");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO `user_tasks` (`user_task`, `task_datetime`, `user_id`, `created_at`) " +
+            this._adapter.InsertCommand.CommandText = "INSERT INTO `user_tasks` (`user_task`, `task_datetime`, `created_at`, `user_id`) " +
                 "VALUES (@p1, @p2, @p3, @p4)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
@@ -1363,26 +1364,26 @@ namespace ToDoApp__GUI.todoapp_dbDataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p2";
-            param.DbType = global::System.Data.DbType.DateTime;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.DateTime;
+            param.DbType = global::System.Data.DbType.String;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
             param.SourceColumn = "task_datetime";
             param.SourceVersion = global::System.Data.DataRowVersion.Current;
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p3";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "user_id";
-            param.SourceVersion = global::System.Data.DataRowVersion.Current;
-            this._adapter.InsertCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p4";
             param.DbType = global::System.Data.DbType.DateTime;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Timestamp;
             param.IsNullable = true;
             param.SourceColumn = "created_at";
+            param.SourceVersion = global::System.Data.DataRowVersion.Current;
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p4";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "user_id";
             param.SourceVersion = global::System.Data.DataRowVersion.Current;
             this._adapter.InsertCommand.Parameters.Add(param);
         }
@@ -1400,7 +1401,7 @@ namespace ToDoApp__GUI.todoapp_dbDataSetTableAdapters {
             this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[1];
             this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT `user_task`, `task_datetime`, `user_id`, `created_at` FROM `user_tasks`";
+            this._commandCollection[0].CommandText = "SELECT `user_task`, `task_datetime`, `created_at`, `user_id` FROM `user_tasks`";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1461,26 +1462,26 @@ namespace ToDoApp__GUI.todoapp_dbDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string p1, global::System.Nullable<global::System.DateTime> p2, int p3, global::System.Nullable<global::System.DateTime> p4) {
+        public virtual int Insert(string p1, string p2, global::System.Nullable<global::System.DateTime> p3, int p4) {
             if ((p1 == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(p1));
             }
-            if ((p2.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(p2.Value));
-            }
-            else {
+            if ((p2 == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(p3));
-            if ((p4.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(p4.Value));
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(p2));
+            }
+            if ((p3.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(p3.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
+            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(p4));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {

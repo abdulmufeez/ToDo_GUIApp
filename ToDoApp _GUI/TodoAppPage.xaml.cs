@@ -24,8 +24,7 @@ namespace ToDoApp__GUI
     public partial class TodoAppPage : Page
     {
         private MySqlConnection signInForm_MySqlConection;
-        public string userName { get; set; } 
-        
+        public string userName { get; set; }
 
         public TodoAppPage(MySqlConnection mySqlConnection, string username)
         {
@@ -33,22 +32,39 @@ namespace ToDoApp__GUI
             signInForm_MySqlConection = mySqlConnection;
             userName = username;
             UserName_Tag.Text = "Username: " + userName;
+
+            showingtask_inlistbox(userName);
         }
 
 
-        private void showingtask_inlistbox()
+        private void showingtask_inlistbox(string username)
         {
-            string query = "SELECT user_task, user_tasks.created_at, task_datetime FROM users" +
-                "INNER JOIN user_tasks" +
-                "ON users.id = user_tasks.user_id ;";
-            MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(query, signInForm_MySqlConection);
-            using (mySqlDataAdapter)
+            try
             {
-                DataTable dataTable = new DataTable();
-                mySqlDataAdapter.Fill(dataTable);
+                string query = "SElECT CONCAT(user_task,' - ', task_datetime) AS TaskWithDate FROM users " +
+                    "INNER JOIN user_tasks " +
+                    "ON user_tasks.user_id = users.id WHERE username = '"+ username +"'; ";                
+                MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(query, signInForm_MySqlConection);
+                using (mySqlDataAdapter)
+                {                    
+                    DataTable dataTable = new DataTable();
+                    mySqlDataAdapter.Fill(dataTable);
 
-                UserTask_listBox.ItemsSource = dataTable.DefaultView;
+
+                    UserTask_listBox.DisplayMemberPath = "TaskWithDate" ;
+                    UserTask_listBox.SelectedValuePath = "user_id";
+                    UserTask_listBox.ItemsSource = dataTable.DefaultView;
+                    
+                    
+                }
             }
+            catch (Exception error)
+            {
+
+                MessageBox.Show(error.Message.ToString());
+            }
+            
+            
         }
     }
 }

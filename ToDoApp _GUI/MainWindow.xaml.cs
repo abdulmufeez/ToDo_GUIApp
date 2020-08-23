@@ -56,6 +56,7 @@ namespace ToDoApp__GUI
 
                         DataTable dataTable = new DataTable();                                              //here we create a table for data to be fill
                         mySqlDataAdapter.Fill(dataTable);                                                   //store result of mysql in adapter is now filling in data table
+                        mySqlDataAdapter.Dispose();
                         if (dataTable.Rows.Count > 0 && dataTable.Rows.Count <= 1)                          //if result is perfect then there should be one row in data table
                         {
                             Login_InfoBar.Foreground = Brushes.Blue;                                        //changing label text colour
@@ -71,6 +72,8 @@ namespace ToDoApp__GUI
                             Login_InfoBar.Text = "Incorrect username and password!";
                         }
                     }
+                    UserNameBox.Text = "";
+                    PasswordBox.Password = "";
                 }                
                 catch (Exception error)
                 {

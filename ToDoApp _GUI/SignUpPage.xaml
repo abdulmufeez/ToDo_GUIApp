@@ -19,7 +19,7 @@
         <Label Content="Password:" FontSize="15" Margin="100,10,100,0" />
         <PasswordBox x:Name="SignUp_PasswordBox" FontSize="14" Margin="100,5,100,0" Height="30" VerticalContentAlignment="Center" />
         <Label Content="Confirm Password:" FontSize="15" Margin="100,10,100,0" />
-        <PasswordBox x:Name="SignUp_ConfirmPassWordBox" FontSize="14" Margin="100,5,100,0" Height="30" VerticalContentAlignment="Center" />
+        <PasswordBox x:Name="SignUp_ConfirmPasswordBox" FontSize="14" Margin="100,5,100,0" Height="30" VerticalContentAlignment="Center" />
         <Button x:Name="SignUpPage_Button" Content="Sign Up" FontSize="15" Margin="180,15,180,10" Height="30" Click="SignUp_Page_SignUp_Button" />
         <TextBlock Name="SignUp_InfoBar" Margin="80,10,80,10" FontSize="15" HorizontalAlignment="Center" />
         <Button Content="Close" Foreground="Red" FontSize="15" Margin="180,0,180,10" Height="30" Click="SignUp_PageClose_Button" />

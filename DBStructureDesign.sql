@@ -10,11 +10,9 @@ CREATE TABLE users
 	user_password VARCHAR(255) NOT NULL,
 	created_at TIMESTAMP DEFAULT NOW()
 );
-
-
-
 CREATE TABLE user_tasks
 (
+	id int AUTO_INCREMENT PRIMARY KEY NOT NULL,
 	user_task VARCHAR(255) DEFAULT "NO TASK",
 	task_datetime VARCHAR(255),
 	created_at TIMESTAMP DEFAULT NOW(),

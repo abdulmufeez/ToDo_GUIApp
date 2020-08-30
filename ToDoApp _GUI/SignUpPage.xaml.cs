@@ -19,36 +19,33 @@ using Ubiety.Dns.Core;
 
 namespace ToDoApp__GUI
 {
-    /// <summary>
-    /// Interaction logic for SignUpPage.xaml
-    /// </summary>
     public partial class SignUpPage : Page
     {
          private MySqlConnection signInForm_MySqlConection;
         public SignUpPage(MySqlConnection mySqlConnection)
         {
             InitializeComponent();
-            signInForm_MySqlConection = mySqlConnection;                                                    //requesting mysql connection from main class/window
+            signInForm_MySqlConection = mySqlConnection;        //requesting mysql connection from main class/window
         }
         private void SignUp_Page_SignUp_Button (object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(UserNameBox.Text) 
+            if (!string.IsNullOrEmpty(UserNameBox.Text)         //Checking whether text boxes is empty 
                 && !string.IsNullOrEmpty(EmailBox.Text)
                 && !string.IsNullOrEmpty(SignUp_PasswordBox.Password) 
                 && !string.IsNullOrEmpty(SignUp_ConfirmPasswordBox.Password))
             {
-                if (SignUp_PasswordBox.Password.ToLower() == SignUp_ConfirmPasswordBox.Password.ToLower())
+                if (SignUp_PasswordBox.Password.ToLower() == SignUp_ConfirmPasswordBox.Password.ToLower())      //Checking both password box is same or not
                 {
                     try
                     {
-                        String mySqlQuery = "INSERT INTO users (username, email, user_password)" +
+                        String mySqlQuery = "INSERT INTO users (username, email, user_password)" +          //Mysql Insert Query with variable
                                     " VALUES ('" + UserNameBox.Text + "', '" + EmailBox.Text + "', SHA1" +
-                                    "('" + UserNameBox.Text + SignUp_PasswordBox.Password + "'));";             //Mysql Insert Query with variable
-                        MySqlCommand mySqlCommand = new MySqlCommand(mySqlQuery, signInForm_MySqlConection);      //Saving query and connection on mysql command
-                        signInForm_MySqlConection.Open();                                         
-                        mySqlCommand.ExecuteScalar();
+                                    "('" + UserNameBox.Text + SignUp_PasswordBox.Password + "'));";             
+                        MySqlCommand mySqlCommand = new MySqlCommand(mySqlQuery, signInForm_MySqlConection);        //Saving query and connection on mysql command
+                        signInForm_MySqlConection.Open();       //Opening Mysql conection                                         
+                        mySqlCommand.ExecuteScalar();           //this command only execute and return first column of first row
                         
-                        SignUp_InfoBar.Foreground = Brushes.Blue;
+                        SignUp_InfoBar.Foreground = Brushes.Blue;       //decorations
                         SignUp_InfoBar.Text = "Account Successfully created";
                         
                     }
@@ -58,8 +55,8 @@ namespace ToDoApp__GUI
                     }
                     finally
                     {
-                        signInForm_MySqlConection.Close();
-                        UserNameBox.Text = "";
+                        signInForm_MySqlConection.Close();          //closing connection
+                        UserNameBox.Text = "";          //emptying all feilds
                         EmailBox.Text = "";
                         SignUp_PasswordBox.Password = "";
                         SignUp_ConfirmPasswordBox.Password = "";
@@ -79,7 +76,7 @@ namespace ToDoApp__GUI
         }
         private void SignUp_PageClose_Button(object sender, RoutedEventArgs e)
         {
-            Application.Current.MainWindow.Close();
+            Application.Current.MainWindow.Close();         //closing whole application
         }
     }
 }

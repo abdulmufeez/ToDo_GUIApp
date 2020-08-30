@@ -20,9 +20,6 @@ using System.Data;
 
 namespace ToDoApp__GUI
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {        
         protected MySqlConnection mySqlConnection;
@@ -32,7 +29,8 @@ namespace ToDoApp__GUI
         {
             InitializeComponent();
 
-
+            //string connectionString = ConfigurationManager.ConnectionStrings["ToDoApp_GUI.Properties" +
+            //    ".Settings.todoapp_dbConnectionString"].ConnectionString;
             string ConnectionString ="server=localhost;user id=root;" +
                 "password=manjan;persistsecurityinfo=True;database=todoapp_db";                             //Connection String For DataBase 
             mySqlConnection = new MySqlConnection(ConnectionString);

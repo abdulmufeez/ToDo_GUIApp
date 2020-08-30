@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Renci.SshNet.Messages.Connection;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -18,9 +19,6 @@ using Ubiety.Dns.Core.Records.NotUsed;
 
 namespace ToDoApp__GUI
 {
-    /// <summary>
-    /// Interaction logic for TodoAppPage.xaml
-    /// </summary>
     public partial class TodoAppPage : Page
     {
         private MySqlConnection signInForm_MySqlConection;
@@ -43,20 +41,20 @@ namespace ToDoApp__GUI
         {
             try
             {
-                string query = "SElECT CONCAT(user_task,' -- ',task_datetime) AS user_task, user_tasks.id AS id FROM users " +
+                string query = "SElECT CONCAT(user_task,' -- ',task_datetime) AS user_task, user_tasks.id AS id FROM users " +          //Mysql Query/Command
                     "INNER JOIN user_tasks " +
                     "ON user_tasks.user_id = users.id WHERE username = '"+ userName +"'; ";                
-                MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(query, signInForm_MySqlConection);
-                using (mySqlDataAdapter)
+                MySqlDataAdapter mySqlDataAdapter = new MySqlDataAdapter(query, signInForm_MySqlConection);         //this is like a adapter which take query and connection and run it
+                using (mySqlDataAdapter)        //running in like a loop
                 {
-                    DataTable dataTable = new DataTable();
-                    mySqlDataAdapter.Fill(dataTable);
-                    mySqlDataAdapter.Dispose();
+                    DataTable dataTable = new DataTable();          //Creating table same as in Mysql
+                    mySqlDataAdapter.Fill(dataTable);               //filling table with mysql data
+                    mySqlDataAdapter.Dispose();                     //disposig adapter means closing connection
 
                     
-                    UserTask_listBox.DisplayMemberPath = "user_task" ;
+                    UserTask_listBox.DisplayMemberPath = "user_task" ;      //showing mysql data with id 
                     UserTask_listBox.SelectedValuePath = "id";
-                    UserTask_listBox.ItemsSource = dataTable.DefaultView;
+                    UserTask_listBox.ItemsSource = dataTable.DefaultView;   //connecting list box source to data table
                 }
             }
             catch (Exception error)
@@ -94,20 +92,28 @@ namespace ToDoApp__GUI
                 MessageBox.Show("First enter task first!");
             }            
         }
+        /*
+         * here i create requestuserid function 
+         * the main working here is to extract the user id which is present in main table 
+         * not in secomdary table which is connected to main table which is users(name)
+         * so to achieve this i created this otherwise i may have to create the whole database again
+         */
         public int RequestUsernameId()
         {
             var id = 0;            
             try
             {                
-                string query = "SELECT id FROM users WHERE username = '"+ userName +"';";
-                using (MySqlCommand mySqlCommand = new MySqlCommand(query, signInForm_MySqlConection))
+                string query = "SELECT id FROM users WHERE username = '"+ userName +"';";       
+                MySqlCommand mySqlCommand = new MySqlCommand(query, signInForm_MySqlConection);
+                using (mySqlCommand)
                 {
                     signInForm_MySqlConection.Open();
-                    using (MySqlDataReader reader = mySqlCommand.ExecuteReader())
+                    using (MySqlDataReader reader = mySqlCommand.ExecuteReader())       //here mysqldatareader and executereader both work together such as 
+                                                                                        //reader read the data from the mysql output and executer execute the datareader 
                     {
-                        while (reader.Read())
+                        while (reader.Read())       //reading in lope that is one by one
                         {
-                            id = Convert.ToInt32(reader[0]);                            
+                            id = Convert.ToInt32(reader[0]);        //saving in variable                     
                         }
                     }
                     signInForm_MySqlConection.Close();
@@ -117,7 +123,7 @@ namespace ToDoApp__GUI
             {
                 MessageBox.Show(error.Message.ToString());
             }
-            return id;
+            return id;      //finally return user id 
         }
         private void DeleteTask_Button (object sender, RoutedEventArgs e)
         {
@@ -167,6 +173,15 @@ namespace ToDoApp__GUI
                 MessageBox.Show("First enter required things!");
             }
             
+        }
+        private void SignOut_Button (object sender, RoutedEventArgs e)
+        {
+            //this.Content = new MainWindow();
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+
+            //Application.Current.Run();
+
         }
     }
 }
